@@ -1832,7 +1832,9 @@ header p {
   font-size: var(--fs-xs);
 }
 
-/* Final Round share card: podium layout (not a full bracket dump) */
+/* Final Round share card: podium layout (not a full bracket dump)
+   [ champion — full width ]
+   [ runner-up | third ] */
 .bracket-export--podium {
   width: 720px;
 }
@@ -1841,53 +1843,33 @@ header p {
   display: flex;
   flex-direction: column;
   align-items: stretch;
-  gap: 18px;
+  gap: 12px;
   padding: 8px 4px 4px;
 }
 
-.podium-export__final-row {
+.podium-export__lower-row {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1.35fr) minmax(0, 1fr);
-  gap: 14px;
-  align-items: center;
-}
-
-.podium-export__sf {
-  opacity: 0.5;
-  filter: grayscale(0.35);
-  background: var(--light-gray);
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  padding: 12px 10px;
-  min-height: 100%;
-}
-
-.podium-export__sf-label {
-  margin: 0 0 8px;
-  font-family: var(--font-heading);
-  font-size: var(--fs-xs);
-  font-weight: 700;
-  color: #6b7280;
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  align-items: stretch;
 }
 
 .podium-export__place {
   text-align: center;
-  padding: 10px 8px;
+  padding: 14px 12px;
+  border: 1px solid rgba(54, 69, 79, 0.12);
+  border-radius: 14px;
 }
 
 .podium-export__place--first {
-  background: linear-gradient(180deg, rgba(54, 69, 79, 0.08), transparent);
-  border: 1px solid var(--border);
-  border-radius: 14px;
-  padding: 16px 12px;
+  background: #F0EBE3; /* warm parchment */
+  padding: 22px 16px;
+  box-shadow: 0 1px 0 rgba(54, 69, 79, 0.06);
 }
 
 .podium-export__place--second,
 .podium-export__place--third {
-  border-top: 1px solid var(--border);
-  padding-top: 14px;
+  background: #E8EEF0; /* cool mist — pairs with brand slate */
 }
 
 .podium-export__place-label {
@@ -1903,12 +1885,8 @@ header p {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
+  gap: 10px;
   margin: 4px 0;
-}
-
-.podium-export__team--muted {
-  justify-content: flex-start;
 }
 
 .podium-export__team--hero .podium-export__name {
@@ -1918,8 +1896,17 @@ header p {
   color: var(--brand);
 }
 
+.podium-export__place--first .podium-export__team--hero {
+  gap: 12px;
+}
+
 .podium-export__place--first .podium-export__team--hero .podium-export__name {
-  font-size: var(--fs-xl);
+  font-size: 1.85rem; /* bumped above --fs-xl for the share-card hero */
+}
+
+.podium-export__place--first .podium-export__flag {
+  width: 40px;
+  height: 30px;
 }
 
 .podium-export__flag {

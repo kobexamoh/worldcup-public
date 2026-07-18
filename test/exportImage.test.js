@@ -158,13 +158,9 @@ test('export brand host is the public subdomain', () => {
   assert.equal(EXPORT_BRAND_HOST, 'worldcup.kobexamoh.me');
 });
 
-test('buildPodiumExportNode renders champion / runner-up / third with brand host', () => {
+test('buildPodiumExportNode renders champion full-width then runner-up / third row', () => {
   const doc = fakeDoc();
   const bracket = {
-    sf: [
-      { id: 'M101', a: { team: 'France' }, b: { team: 'Spain' } },
-      { id: 'M102', a: { team: 'England' }, b: { team: 'Argentina' } },
-    ],
     final: [{ id: 'M104', a: { team: 'Spain' }, b: { team: 'Argentina' } }],
     thirdPlace: [{ id: 'M103', a: { team: 'France' }, b: { team: 'England' } }],
   };
@@ -176,5 +172,7 @@ test('buildPodiumExportNode renders champion / runner-up / third with brand host
     .querySelectorAll('.podium-export__place .podium-export__name')
     .map((el) => el.textContent);
   assert.deepEqual(names, ['Argentina', 'Spain', 'England']);
-  assert.equal(node.querySelectorAll('.podium-export__sf').length, 2);
+  assert.ok(node.querySelector('.podium-export__place--first'));
+  assert.ok(node.querySelector('.podium-export__lower-row'));
+  assert.equal(node.querySelectorAll('.podium-export__sf').length, 0);
 });

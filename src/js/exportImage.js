@@ -5,8 +5,8 @@
  * Cards are rendered fresh from state rather than screenshotting the live UI,
  * so the export never picks up sticky chrome, scroll position, or viewport size.
  *
- * Final Round export is a podium share card (1st / 2nd / 3rd) with greyed
- * semi-finals for context — not a full bracket dump.
+ * Final Round export is a podium share card (champion full-width, then
+ * runner-up | third) — not a full bracket dump.
  *
  * Dependencies (the html2canvas loader and `document`) are injected with
  * call-time defaults, so importing this module never touches the DOM or pulls
@@ -86,7 +86,7 @@ function appendBrandHead(doc, node, title) {
   node.appendChild(head);
 }
 
-function appendFlaggedTeam(doc, parent, teamName, className = 'podium-export__team') {
+function appendFlaggedTeam(doc, parent, teamName, className = 'podium-export__team', flagSize = { w: 28, h: 21 }) {
   const row = doc.createElement('div');
   row.className = className;
 
@@ -96,8 +96,8 @@ function appendFlaggedTeam(doc, parent, teamName, className = 'podium-export__te
     img.src = `/flags/${code}.png`;
     img.alt = '';
     img.className = 'podium-export__flag';
-    img.width = 28;
-    img.height = 21;
+    img.width = flagSize.w;
+    img.height = flagSize.h;
     row.appendChild(img);
   }
 
@@ -108,18 +108,6 @@ function appendFlaggedTeam(doc, parent, teamName, className = 'podium-export__te
   parent.appendChild(row);
 }
 
-function appendSemiFinal(doc, parent, match, label) {
-  const card = doc.createElement('div');
-  card.className = 'podium-export__sf';
-  const title = doc.createElement('p');
-  title.className = 'podium-export__sf-label';
-  title.textContent = label;
-  card.appendChild(title);
-  appendFlaggedTeam(doc, card, match?.a?.team, 'podium-export__team podium-export__team--muted');
-  appendFlaggedTeam(doc, card, match?.b?.team, 'podium-export__team podium-export__team--muted');
-  parent.appendChild(card);
-}
-
 function appendPlace(doc, parent, placeLabel, medal, teamName, modifier) {
   const block = doc.createElement('div');
   block.className = `podium-export__place podium-export__place--${modifier}`;
@@ -127,13 +115,15 @@ function appendPlace(doc, parent, placeLabel, medal, teamName, modifier) {
   label.className = 'podium-export__place-label';
   label.textContent = `${medal} ${placeLabel}`;
   block.appendChild(label);
-  appendFlaggedTeam(doc, block, teamName, 'podium-export__team podium-export__team--hero');
+  const flagSize = modifier === 'first' ? { w: 40, h: 30 } : { w: 28, h: 21 };
+  appendFlaggedTeam(doc, block, teamName, 'podium-export__team podium-export__team--hero', flagSize);
   parent.appendChild(block);
 }
 
 /**
- * Build the Final Round share card: greyed semis flanking the champion,
- * runner-up under that, third place below.
+ * Build the Final Round share card:
+ *   [ champion — full width ]
+ *   [ runner-up | third ]
  */
 export function buildPodiumExportNode(doc, bracket, winners, title, width = PODIUM_EXPORT_WIDTH) {
   const node = doc.createElement('div');
@@ -142,22 +132,17 @@ export function buildPodiumExportNode(doc, bracket, winners, title, width = PODI
   appendBrandHead(doc, node, title);
 
   const podium = getPodiumPlacements(bracket, winners);
-  const sf = bracket?.sf || [];
-  const leftSf = sf.find((m) => m.id === 'M101') || sf[0] || null;
-  const rightSf = sf.find((m) => m.id === 'M102') || sf[1] || null;
 
   const body = doc.createElement('div');
   body.className = 'podium-export';
 
-  const finalRow = doc.createElement('div');
-  finalRow.className = 'podium-export__final-row';
-  appendSemiFinal(doc, finalRow, leftSf, 'Semi-final');
-  appendPlace(doc, finalRow, 'Champion', '🥇', podium.first, 'first');
-  appendSemiFinal(doc, finalRow, rightSf, 'Semi-final');
-  body.appendChild(finalRow);
+  appendPlace(doc, body, 'Champion', '🥇', podium.first, 'first');
 
-  appendPlace(doc, body, 'Runner-up', '🥈', podium.second, 'second');
-  appendPlace(doc, body, 'Third place', '🥉', podium.third, 'third');
+  const lower = doc.createElement('div');
+  lower.className = 'podium-export__lower-row';
+  appendPlace(doc, lower, 'Runner-up', '🥈', podium.second, 'second');
+  appendPlace(doc, lower, 'Third place', '🥉', podium.third, 'third');
+  body.appendChild(lower);
 
   node.appendChild(body);
   return node;
