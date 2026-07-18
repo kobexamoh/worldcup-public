@@ -5,10 +5,14 @@
   --light-gray: #f6f5f1;
   --border: #ddd;
   --text: #333;
-  /* University of Alberta brand colours */
-  --ua-green: #007A33;
-  --ua-dark-green: #275D38;
-  --ua-gold: #F2CD00;
+  /* Personal brand (charcoal blue) + warm accent for dark surfaces */
+  --brand: #36454F;
+  --brand-dark: #252f36;
+  --brand-gold: #F2CD00;
+  /* Aliases kept so older rules / confetti token reads stay valid */
+  --ua-green: var(--brand);
+  --ua-dark-green: var(--brand-dark);
+  --ua-gold: var(--brand-gold);
   /* Type: Alegreya Sans (headings/UI) + Faustina (body/team names).
      Both free on Google Fonts (OFL) — same stack for live UI + PNG export. */
   --font-heading: 'Alegreya Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
@@ -104,7 +108,7 @@ header p {
   padding-top: 2px;
 }
 
-/* Sign Out lives on the green header, so invert the ghost button for contrast */
+/* Sign Out lives on the branded header, so invert the ghost button for contrast */
 .header-actions .btn-ghost {
   background: transparent;
   color: #ffffff;
@@ -117,7 +121,7 @@ header p {
   box-shadow: none;
 }
 
-/* "Logged in as …" sits on the green header, so it's white + compact */
+/* "Logged in as …" sits on the branded header, so it's white + compact */
 .header-user {
   color: #ffffff;
   font-size: var(--fs-2xs);
@@ -1826,6 +1830,113 @@ header p {
   color: var(--ua-gold);
   font-weight: 700;
   font-size: var(--fs-xs);
+}
+
+/* Final Round share card: podium layout (not a full bracket dump) */
+.bracket-export--podium {
+  width: 720px;
+}
+
+.podium-export {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 18px;
+  padding: 8px 4px 4px;
+}
+
+.podium-export__final-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.35fr) minmax(0, 1fr);
+  gap: 14px;
+  align-items: center;
+}
+
+.podium-export__sf {
+  opacity: 0.5;
+  filter: grayscale(0.35);
+  background: var(--light-gray);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 12px 10px;
+  min-height: 100%;
+}
+
+.podium-export__sf-label {
+  margin: 0 0 8px;
+  font-family: var(--font-heading);
+  font-size: var(--fs-xs);
+  font-weight: 700;
+  color: #6b7280;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.podium-export__place {
+  text-align: center;
+  padding: 10px 8px;
+}
+
+.podium-export__place--first {
+  background: linear-gradient(180deg, rgba(54, 69, 79, 0.08), transparent);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 16px 12px;
+}
+
+.podium-export__place--second,
+.podium-export__place--third {
+  border-top: 1px solid var(--border);
+  padding-top: 14px;
+}
+
+.podium-export__place-label {
+  margin: 0 0 8px;
+  font-family: var(--font-heading);
+  font-size: var(--fs-xs);
+  font-weight: 700;
+  color: var(--brand);
+  letter-spacing: 0.02em;
+}
+
+.podium-export__team {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin: 4px 0;
+}
+
+.podium-export__team--muted {
+  justify-content: flex-start;
+}
+
+.podium-export__team--hero .podium-export__name {
+  font-family: var(--font-heading);
+  font-size: var(--fs-lg);
+  font-weight: 800;
+  color: var(--brand);
+}
+
+.podium-export__place--first .podium-export__team--hero .podium-export__name {
+  font-size: var(--fs-xl);
+}
+
+.podium-export__flag {
+  width: 28px;
+  height: 21px;
+  object-fit: cover;
+  border-radius: 2px;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.08);
+  flex-shrink: 0;
+}
+
+.podium-export__name {
+  font-family: var(--font-body);
+  font-size: var(--fs-base);
+  font-weight: 600;
+  color: var(--text);
+  line-height: 1.2;
 }
 
 .bracket-toolbar {
