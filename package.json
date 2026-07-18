@@ -1,0 +1,23 @@
+{
+  "name": "worldcup-public",
+  "version": "1.0.0",
+  "description": "2026 World Cup Final Round bracket — public, browser-only picks",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "flags:sync": "node scripts/sync-flags.js",
+    "test": "node --test test/*.test.js"
+  },
+  "dependencies": {
+    "@vercel/analytics": "^2.0.1",
+    "canvas-confetti": "^1.9.4",
+    "html2canvas": "^1.4.1"
+  },
+  "devDependencies": {
+    "@resvg/resvg-js": "^2.6.2",
+    "flag-icons": "^7.5.0",
+    "vite": "^5.0.0"
+  }
+}
