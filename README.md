@@ -29,3 +29,4 @@ Optional: enable [Vercel Web Analytics](https://vercel.com/docs/analytics) in th
 ## Tests
 
 Unit tests cover bracket validation, knockout logic, export helpers, and localStorage persistence.
+
