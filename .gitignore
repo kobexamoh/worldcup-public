@@ -48,3 +48,4 @@ personal-context
 
 # Original/reference scratch (local only - the pre-modular wc-bracket.html, kept for the knockout layout)
 reference/
+.vercel
