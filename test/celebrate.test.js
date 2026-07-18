@@ -21,8 +21,8 @@ test('buildCelebrationBursts fires two side cannons (left x:0 + right x:1)', () 
 test('buildCelebrationBursts uses the brand palette and renders above the modal', () => {
   for (const burst of buildCelebrationBursts()) {
     assert.deepEqual(burst.colors, CELEBRATION_COLORS);
-    assert.ok(burst.colors.includes('#007A33')); // UA green token
-    assert.ok(burst.colors.includes('#F2CD00')); // UA gold token
+    assert.ok(burst.colors.includes('#36454F')); // brand blue
+    assert.ok(burst.colors.includes('#F2CD00')); // gold accent
     assert.equal(burst.zIndex, CELEBRATION_Z_INDEX);
     assert.ok(burst.zIndex >= 300); // above .modal (z-index 300)
     assert.equal(burst.disableForReducedMotion, true);

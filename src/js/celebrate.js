@@ -6,7 +6,7 @@
  *    app's climactic action (submitting a bracket) and then gets out of the
  *    way — not a continuous, attention-hogging loop.
  *  - Token-driven: the confetti colours are read from the same CSS design
- *    tokens the rest of the UI uses (--ua-green / --ua-gold / --gold), so the
+ *    tokens the rest of the UI uses (--brand / --brand-gold / --gold), so the
  *    brand stays single-sourced instead of being duplicated as magic hexes.
  *  - Accessible + safe: honours `prefers-reduced-motion`, the canvas never
  *    blocks the dialog (pointer-events stay off), and the library is lazy-
@@ -21,7 +21,7 @@
 
 // Brand fallback palette (mirrors the CSS tokens) used when the tokens can't be
 // read — e.g. in unit tests, or before styles are applied.
-export const CELEBRATION_COLORS = ['#007A33', '#F2CD00', '#ebc574', '#ffffff'];
+export const CELEBRATION_COLORS = ['#36454F', '#F2CD00', '#ebc574', '#ffffff'];
 
 // Render above the modal layer (`.modal` is z-index 300) so the confetti rains
 // over the whole celebratory moment. canvas-confetti's canvas has no pointer
@@ -79,7 +79,7 @@ export function readBrandColors(doc = typeof document !== 'undefined' ? document
   try {
     if (!doc || typeof getComputedStyle !== 'function') return CELEBRATION_COLORS;
     const styles = getComputedStyle(doc.documentElement);
-    const resolved = ['--ua-green', '--ua-gold', '--gold']
+    const resolved = ['--brand', '--brand-gold', '--gold']
       .map((token) => styles.getPropertyValue(token).trim())
       .filter(Boolean);
     resolved.push('#ffffff');
