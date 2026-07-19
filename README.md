@@ -1,8 +1,8 @@
-# 2026 World Cup Final Round Bracket
+# 2026 World Cup: The Final Match
 
-Public, no-login bracket for the World Cup Final Round at [worldcup.kobexamoh.me](https://worldcup.kobexamoh.me).
+Public, no-login bracket for the World Cup Final at [worldcup.kobexamoh.me](https://worldcup.kobexamoh.me).
 
-Pick Spain vs Argentina in the Final and the third-place match (France vs England). Picks save in your browser; screenshot to share.
+Pick Spain vs Argentina in the Final. Third place is already decided. Picks save in your browser; screenshot to share.
 
 ## Stack
 
@@ -24,9 +24,8 @@ npm run build    # output in dist/
 
 Static Vite build on Vercel (`vercel.json` rewrites to `index.html`). No backend or env vars required for the public bracket.
 
-Optional: enable [Vercel Web Analytics](https://vercel.com/docs/analytics) in the dashboard — the client calls `@vercel/analytics` on the deployed domain only.
+Optional: enable [Vercel Web Analytics](https://vercel.com/docs/analytics) in the dashboard. The client calls `@vercel/analytics` on the deployed domain only.
 
 ## Tests
 
 Unit tests cover bracket validation, knockout logic, export helpers, and localStorage persistence.
-

@@ -7,7 +7,7 @@
 
 /** Alert shown on login when locked (the fuller message lives in the HTML banner). */
 export const GROUP_STAGE_LOCK_BANNER =
-  'Group-stage submissions are closed. Your bracket is saved for scoring — click through to Third Place and Knockout to keep predicting.';
+  'Group-stage submissions are closed. Your bracket is saved for scoring. Click through to Third Place and Knockout to keep predicting.';
 
 /** Short alert when someone tries to submit while locked. */
 export const GROUP_STAGE_LOCK_SUBMIT_ALERT =

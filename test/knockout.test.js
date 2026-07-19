@@ -3,6 +3,8 @@ import assert from 'node:assert/strict';
 
 import { lookupAnnexCOpponents, buildRoundOf32Matches, buildKnockoutBracket, setWinner, applyWinnerPick, getPodiumPlacements } from '../src/js/knockout.js';
 import { renderKnockoutTree, podiumMedalFor } from '../src/js/knockoutRender.js';
+import { buildRealResultsBracket } from '../src/js/realKnockout.js';
+import { REAL_MATCH_SCORES } from '../src/js/realResults.js';
 
 function makePicksWithKnownThirds() {
   // Minimal picks: provide a full 1st->4th order for only the groups we need
@@ -233,6 +235,22 @@ test('Final and third-place picks render medal badges beside team names', () => 
   // Semis must not inherit Final medals
   const sfChunk = html.slice(html.indexOf('bracket-round--sf'), html.indexOf('bracket-round--final'));
   assert.doesNotMatch(sfChunk, /bracket-team__medal/);
+});
+
+test('locked third-place match shows Already decided tag and live scores', () => {
+  const { bracket, mergedWinners, lockedSet } = buildRealResultsBracket();
+  const html = renderKnockoutTree(bracket, mergedWinners, {
+    startRound: 'sf',
+    lockedMatches: lockedSet,
+    matchScores: REAL_MATCH_SCORES,
+  });
+
+  assert.match(html, /bracket-round__lock-tag">Already decided</);
+  assert.match(html, /bracket-team__score[^>]*>4</);
+  assert.match(html, /bracket-team__score[^>]*>6</);
+  assert.match(html, /France/);
+  assert.match(html, /England/);
+  assert.match(html, /bracket-team[^>]*has-score/);
 });
 
 test('right half columns run QF inward to R32 on the outer edge', () => {

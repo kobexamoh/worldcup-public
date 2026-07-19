@@ -3,20 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>2026 World Cup Final Round Bracket</title>
-    <meta name="description" content="Pick Spain vs Argentina in the Final and France vs England for third place. No account — picks save in your browser. Screenshot and share.">
+    <title>2026 World Cup: The Final Match</title>
+    <meta name="description" content="Spain vs Argentina in the Final. Pick your winner. No account needed; picks save in your browser. Screenshot and share.">
     <meta name="theme-color" content="#36454F">
     <link rel="canonical" href="https://worldcup.kobexamoh.me/">
 
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://worldcup.kobexamoh.me/">
-    <meta property="og:title" content="2026 World Cup Final Round Bracket">
-    <meta property="og:description" content="Pick the champion and third place. Screenshot your picks. Built by Kobe Amoh.">
+    <meta property="og:title" content="2026 World Cup: The Final Match">
+    <meta property="og:description" content="Spain vs Argentina. Pick your winner, then screenshot your pick. Built by Kobe Amoh.">
     <meta property="og:site_name" content="worldcup.kobexamoh.me">
 
     <meta name="twitter:card" content="summary">
-    <meta name="twitter:title" content="2026 World Cup Final Round Bracket">
-    <meta name="twitter:description" content="Pick the champion and third place. Screenshot your picks. Built by Kobe Amoh.">
+    <meta name="twitter:title" content="2026 World Cup: The Final Match">
+    <meta name="twitter:description" content="Spain vs Argentina. Pick your winner, then screenshot your pick. Built by Kobe Amoh.">
 
     <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/img/favicon/favicon-16x16.png">
@@ -31,8 +31,8 @@
     <header>
         <div class="header-inner">
             <div class="header-title">
-                <h1>⚽ 2026 World Cup Bracket — <span id="headerStageLabel">The Final Round</span></h1>
-                <p id="headerTagline">Spain vs Argentina in the Final. Pick the champion and the third-place match, then screenshot your picks.</p>
+                <h1>⚽ 2026 World Cup: <span id="headerStageLabel">The Final Match</span></h1>
+                <p id="headerTagline">Spain vs Argentina in the Final. Pick your winner, plain and simple, then screenshot your pick.</p>
             </div>
         </div>
     </header>
@@ -54,7 +54,7 @@
                             >?</button>
                         </span>
                         <span id="nameFieldTip" class="name-field__tip" role="tooltip" hidden>
-                            Optional — shows on your screenshot PNG.
+                            Optional. Shows on your screenshot PNG.
                         </span>
                         <input id="displayNameInput" type="text" maxlength="40" autocomplete="name" placeholder="for your screenshot">
                     </label>
@@ -65,7 +65,7 @@
                 <button type="button" class="stage-btn stage-btn--active" data-stage="groups">Group Stage</button>
                 <button type="button" class="stage-btn stage-btn--disabled" data-stage="third" disabled>Third Place</button>
                 <button type="button" class="stage-btn stage-btn--disabled" data-stage="knockout" disabled>Knockout</button>
-                <button type="button" class="stage-btn" data-stage="officialBracket">Final Round</button>
+                <button type="button" class="stage-btn" data-stage="officialBracket">Final Match</button>
             </nav>
 
             <div id="bracketLayout" class="bracket-layout">
@@ -77,7 +77,7 @@
                         </div>
                         <div class="bracket-actions">
                             <span id="saveStatus" class="save-status" role="status" aria-live="polite"></span>
-                            <button id="randomBtn" type="button" class="btn btn-ghost" title="Randomly fill the groups you haven't set yet (ranks all four) — your existing picks stay put">Select for me</button>
+                            <button id="randomBtn" type="button" class="btn btn-ghost" title="Randomly fill the groups you haven't set yet (ranks all four). Your existing picks stay put">Select for me</button>
                             <button id="deselectBtn" type="button" class="btn btn-ghost" title="Clear every pick in all groups">Deselect all</button>
                             <button id="exportBtn" type="button" class="btn btn-ghost" title="Download your bracket as an image to share">Screenshot bracket (PNG)</button>
                             <button id="saveBtn" type="button" class="btn btn-primary" title="Submit your bracket (needs at least 2 picks in every group)">Submit bracket</button>
@@ -91,9 +91,9 @@
                             <button id="helpBtn" type="button" class="btn btn-ghost btn-help" aria-haspopup="dialog" title="New here? See how the bracket works">How it works</button>
                         </div>
                         <div class="instructions-callout">
-                            <p id="groupStageLockBanner" class="group-stage-lock-notice" hidden>Group-stage submissions are closed — the real group stage has finished. You can still explore Third Place and Knockout, or jump to the Final Round tab.</p>
-                            <p><strong>How to rank:</strong> Click teams in your predicted finishing order — first click is 1st, next is 2nd, and so on. Click a ranked team to clear it, and the teams below shift up to fill the gap.</p>
-                            <p>Your 1st and 2nd advance, and this year the 8 best 3rd-place teams advance too — so rank all four. Submit once every group has at least its top two.</p>
+                            <p id="groupStageLockBanner" class="group-stage-lock-notice" hidden>Group-stage submissions are closed. The real group stage has finished. You can still explore Third Place and Knockout, or jump to the Final Match tab.</p>
+                            <p><strong>How to rank:</strong> Click teams in your predicted finishing order: first click is 1st, next is 2nd, and so on. Click a ranked team to clear it, and the teams below shift up to fill the gap.</p>
+                            <p>Your 1st and 2nd advance, and this year the 8 best 3rd-place teams advance too, so rank all four. Submit once every group has at least its top two.</p>
                         </div>
                     </div>
 
@@ -114,10 +114,10 @@
                         <div class="official-bracket-toolbar">
                             <span id="officialSaveStatus" class="save-status" role="status" aria-live="polite"></span>
                             <div class="official-bracket-actions">
-                                <button id="helpBtnOfficial" type="button" class="btn btn-ghost" aria-haspopup="dialog" title="How the Final Round works">How it works</button>
+                                <button id="helpBtnOfficial" type="button" class="btn btn-ghost" aria-haspopup="dialog" title="How the Final Match works">How it works</button>
                                 <button id="officialExportBtn" type="button" class="btn btn-ghost" title="Download your official bracket as an image to share">Screenshot bracket (PNG)</button>
                                 <button id="viewOfficialPodiumBtn" type="button" class="btn btn-ghost" hidden title="See your 1st–4th podium picks">View podium picks</button>
-                                <button id="officialSubmitBtn" type="button" class="btn btn-primary" hidden title="Lock in your Final Round picks (needs champion through 4th place)">Submit Final Round picks</button>
+                                <button id="officialSubmitBtn" type="button" class="btn btn-primary" hidden title="Lock in your Final Match pick (needs a Final winner)">Submit Final Match pick</button>
                             </div>
                         </div>
                         <div id="officialBracketTree"></div>
@@ -143,18 +143,17 @@
         <div class="modal__backdrop" data-close-help></div>
         <div class="modal__dialog" role="dialog" aria-modal="true" aria-labelledby="helpTitle" tabindex="-1">
             <div class="modal__head">
-                <h2 id="helpTitle">How the Final Round works</h2>
+                <h2 id="helpTitle">How the Final Match works</h2>
                 <button type="button" class="modal__close" data-close-help aria-label="Close">&times;</button>
             </div>
             <div class="modal__body">
-                <p class="modal__lead">We're at the end of the tournament. Here's what to do in under a minute.</p>
+                <p class="modal__lead">One game left. Here's the short version.</p>
                 <h3>What's left</h3>
-                <p><strong>Spain vs Argentina</strong> in the Final. The locked semi-finals on either side show how those two got here.</p>
+                <p><strong>Spain vs Argentina</strong> in the Final. Third place is already decided (England 6-4 France).</p>
                 <h3>How to pick</h3>
-                <p>Click the team you think wins the <strong>Final</strong> (champion). That automatically sets the other finalist as runner-up. Then click who you think wins the <strong>third-place match</strong> (France vs England).</p>
-                <p>Gold, silver, and bronze medals show up next to your picks as you go.</p>
+                <p>Click the team you think wins. Plain and simple. That sets your champion and runner-up.</p>
                 <h3>Save &amp; share</h3>
-                <p>Picks save automatically in this browser. Add your name for the screenshot, then use <strong>Screenshot bracket</strong> when your podium is complete. You can change picks anytime — refresh won't lose them.</p>
+                <p>Picks save automatically in this browser. Add your name for the screenshot, then use <strong>Screenshot bracket</strong> when you're done. You can change your pick anytime; refresh won't lose it.</p>
                 <h3>Found a bug?</h3>
                 <p>Use the <strong>Report a bug</strong> button in the bottom-right corner to send feedback.</p>
             </div>
@@ -212,7 +211,7 @@
                 <button type="button" class="modal__close" data-close-success aria-label="Close">&times;</button>
             </div>
             <div class="modal__body">
-                <p class="modal__lead">Nice one — your picks are saved in this browser. Here's what you can do next:</p>
+                <p class="modal__lead">Nice one. Your picks are saved in this browser. Here's what you can do next:</p>
                 <ul class="success-list">
                     <li><strong>It's saved.</strong> Come back anytime on this device to tweak your bracket.</li>
                     <li><strong>Share it.</strong> Screenshot your bracket and post it wherever you like.</li>
@@ -230,11 +229,11 @@
         <div class="modal__backdrop" data-close-qf-help></div>
         <div class="modal__dialog" role="dialog" aria-modal="true" aria-labelledby="qfHelpTitle" tabindex="-1">
             <div class="modal__head">
-                <h2 id="qfHelpTitle">Heads up — the bracket crosses here</h2>
+                <h2 id="qfHelpTitle">Heads up: the bracket crosses here</h2>
                 <button type="button" class="modal__close" data-close-qf-help aria-label="Close">&times;</button>
             </div>
             <div class="modal__body">
-                <p class="modal__lead">After the quarter-finals, winners do <strong>not</strong> stay on the same side of the screen. That is normal — it is not a bug.</p>
+                <p class="modal__lead">After the quarter-finals, winners do <strong>not</strong> stay on the same side of the screen. That is normal. It is not a bug.</p>
                 <ul class="success-list">
                     <li><strong>What you will see:</strong> a quarter-final winner on the left can show up in a semi-final or final in the <em>center</em>, paired with a team that came from the right side.</li>
                     <li><strong>Why FIFA does it:</strong> so teams from the same original side of the draw cannot meet again until the final (if both keep winning).</li>
@@ -242,7 +241,7 @@
                 </ul>
             </div>
             <div class="modal__foot">
-                <button type="button" class="btn btn-primary" data-close-qf-help>Got it — keep picking</button>
+                <button type="button" class="btn btn-primary" data-close-qf-help>Got it, keep picking</button>
             </div>
         </div>
     </div>
@@ -255,12 +254,12 @@
                 <button type="button" class="modal__close" data-close-champion aria-label="Close">&times;</button>
             </div>
             <div class="modal__body">
-                <p class="modal__lead">Here's how your bracket finishes. Pick the third-place match on the bracket if you haven't yet.</p>
+                <p class="modal__lead">Here's how your bracket finishes. Pick your Final winner if you haven't yet.</p>
                 <ol id="podiumList" class="podium-list"></ol>
             </div>
             <div class="modal__foot">
                 <button type="button" class="btn btn-ghost" data-close-champion>Back to bracket</button>
-                <button type="button" id="championScreenshotBtn" class="btn btn-primary" disabled title="Screenshot export available from the Final Round tab">Screenshot bracket (PNG)</button>
+                <button type="button" id="championScreenshotBtn" class="btn btn-primary" disabled title="Screenshot export available from the Final Match tab">Screenshot bracket (PNG)</button>
             </div>
         </div>
     </div>
@@ -271,7 +270,7 @@
         </p>
     </footer>
 
-    <a id="feedbackLink" class="feedback-fab" href="mailto:feedback@kobexamoh.me?subject=WC%20Final%20Round%20feedback" title="Report a bug or send feedback">Report a bug</a>
+    <a id="feedbackLink" class="feedback-fab" href="mailto:feedback@kobexamoh.me?subject=WC%20Final%20Match%20feedback" title="Report a bug or send feedback">Report a bug</a>
 
     <script type="module" src="/src/js/app.js"></script>
 </body>
