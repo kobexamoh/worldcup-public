@@ -2,7 +2,7 @@
  * Main Application Logic — public Final Round bracket (browser-only persistence).
  */
 
-import { inject } from '@vercel/analytics';
+import { inject, track } from '@vercel/analytics';
 import { renderBracket, getGroupOrder, getGroupTeamNames, getFlagCode, randomPicks, fillBlankRanks, randomizeGroups, ADVANCE_COUNT } from './bracketData.js';
 import { downloadBracketImage, downloadOfficialKnockoutImage } from './exportImage.js';
 import { celebrate } from './celebrate.js';
@@ -1059,6 +1059,7 @@ function applyChooserAndClose() {
 }
 
 async function handleExport() {
+  track('Screenshot bracket', { source: 'groups' });
   if (!Object.keys(picks).length) {
     showAlert('Pick at least one team before downloading an image', 'info');
     return;
@@ -1083,6 +1084,7 @@ async function handleExport() {
 }
 
 async function handleOfficialExport() {
+  track('Screenshot bracket', { source: 'official' });
   if (officialExportBtn) {
     officialExportBtn.disabled = true;
     officialExportBtn.textContent = 'Generating…';
@@ -1338,6 +1340,13 @@ if (officialExportBtn) officialExportBtn.addEventListener('click', handleOfficia
 if (officialSubmitBtn) officialSubmitBtn.addEventListener('click', handleOfficialSubmit);
 if (viewOfficialPodiumBtn) {
   viewOfficialPodiumBtn.addEventListener('click', () => openOfficialChampionModal());
+}
+
+const footerSiteLink = document.getElementById('footerSiteLink');
+if (footerSiteLink) {
+  footerSiteLink.addEventListener('click', () => {
+    track('Footer personal site');
+  });
 }
 if (nameInput) nameInput.addEventListener('input', () => {
   persistName(nameInput.value.trim());
