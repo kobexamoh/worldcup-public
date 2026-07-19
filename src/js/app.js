@@ -14,6 +14,7 @@ import {
   applyRealWinnerPick,
   getLockedMatchIds,
 } from './realKnockout.js';
+import { REAL_MATCH_SCORES } from './realResults.js';
 import {
   allGroupsRanked,
   isThirdPlaceComplete,
@@ -325,7 +326,7 @@ const officialSaveStatusEl = document.getElementById('officialSaveStatus');
 const SUBMIT_LABEL_OPEN = 'Submit bracket';
 const SUBMIT_LABEL_LOCKED = 'Submissions closed';
 const SUBMIT_TITLE_OPEN = 'Submit your bracket (needs at least 2 picks in every group)';
-const SUBMIT_TITLE_LOCKED = 'Group-stage submissions are closed — the real group stage has finished';
+const SUBMIT_TITLE_LOCKED = 'Group-stage submissions are closed. The real group stage has finished';
 
 const STAGE_AUTO_MS = 600;
 let activeStage = 'groups'; // 'groups' | 'third' | 'knockout'
@@ -341,8 +342,8 @@ let savedOfficialSnapshot = '{"winners":{},"submittedAt":""}';
 let officialSaveTimer = null;
 let officialSubmitting = false;
 const OFFICIAL_DEBOUNCE_MS = 1200;
-const OFFICIAL_SUBMIT_LABEL = 'Submit Final Round picks';
-const OFFICIAL_RESUBMIT_LABEL = 'Update Final Round picks';
+const OFFICIAL_SUBMIT_LABEL = 'Submit Final Match pick';
+const OFFICIAL_RESUBMIT_LABEL = 'Update Final Match pick';
 
 // Only set the initial stage tab once — must not yank the user back on reload.
 // but must not yank the user back to Group Stage / Official Bracket.
@@ -411,8 +412,8 @@ function refreshOfficialSubmitUI() {
   officialSubmitBtn.disabled = !complete;
   officialSubmitBtn.textContent = alreadySubmitted ? OFFICIAL_RESUBMIT_LABEL : OFFICIAL_SUBMIT_LABEL;
   officialSubmitBtn.title = alreadySubmitted
-    ? 'Save an updated Official Bracket submission (re-submits are allowed)'
-    : 'Submit your official bracket picks (needs champion through 4th place)';
+    ? 'Save an updated Final Match pick (re-submits are allowed)'
+    : 'Submit your Final Match pick (needs a Final winner)';
 }
 
 // Submit appears twice (desktop toolbar + mobile bottom bar); toggle both together.
@@ -731,7 +732,7 @@ function openChampionModal() {
   ];
   podiumList.innerHTML = rows
     .map(([label, team]) => {
-      const value = team || '— (not picked yet)';
+      const value = team || '(not picked yet)';
       return `<li class="podium-list__item"><span class="podium-list__place">${label}</span><span class="podium-list__team">${value}</span></li>`;
     })
     .join('');
@@ -844,6 +845,7 @@ function renderOfficialBracketUI() {
       lockedMatches: lockedSet,
       startRound: 'sf',
       hidePodiumCta: true,
+      matchScores: REAL_MATCH_SCORES,
     });
   } catch (err) {
     officialBracketTree.innerHTML = `<div class="alert error">${err.message}</div>`;
@@ -953,7 +955,7 @@ function handleSelectForMe() {
   if (!hasPicks) {
     picks = randomPicks();
     afterPicksChanged();
-    showAlert('🎲 Filled all 12 groups for you — tweak, then submit.', 'info');
+    showAlert('🎲 Filled all 12 groups for you. Tweak, then submit.', 'info');
     return;
   }
   if (sessionSelectMode) {
@@ -968,7 +970,7 @@ function applySelectForMe(mode, codes = []) {
   if (mode === 'all') {
     picks = randomPicks();
     afterPicksChanged();
-    showAlert('🎲 Replaced your whole bracket with a fresh random one — tweak, then submit.', 'info');
+    showAlert('🎲 Replaced your whole bracket with a fresh random one. Tweak, then submit.', 'info');
     return;
   }
   if (mode === 'selected') {
@@ -976,13 +978,13 @@ function applySelectForMe(mode, codes = []) {
     picks = randomizeGroups(picks, codes);
     afterPicksChanged();
     const n = codes.length;
-    showAlert(`🎲 Re-rolled ${n} group${n === 1 ? '' : 's'} (${codes.join(', ')}) — tweak, then submit.`, 'info');
+    showAlert(`🎲 Re-rolled ${n} group${n === 1 ? '' : 's'} (${codes.join(', ')}). Tweak, then submit.`, 'info');
     return;
   }
   // 'blanks' (default, safe): keep every placed team, fill only the empty ranks.
   picks = fillBlankRanks(picks);
   afterPicksChanged();
-  showAlert('🎲 Filled the blanks — the teams you already placed stayed put. Tweak, then submit.', 'info');
+  showAlert('🎲 Filled the blanks. The teams you already placed stayed put. Tweak, then submit.', 'info');
 }
 
 // --- "Select for me" chooser modal ---------------------------------------
@@ -1138,7 +1140,7 @@ async function handleSave() {
   if (incomplete.length) {
     const list = incomplete.slice(0, 4).map((code) => `Group ${code}`).join(', ');
     const more = incomplete.length > 4 ? `, +${incomplete.length - 4} more` : '';
-    showAlert(`❌ Pick ${ADVANCE_COUNT} teams in every group before submitting — still need: ${list}${more}`, 'error');
+    showAlert(`❌ Pick ${ADVANCE_COUNT} teams in every group before submitting. Still need: ${list}${more}`, 'error');
     return;
   }
   if (draftTimer) {
@@ -1162,7 +1164,7 @@ async function handleSave() {
     celebrate();
   } else {
     showAlert(
-      '✅ Bracket saved in this browser — screenshot it or keep tweaking anytime.',
+      '✅ Bracket saved in this browser. Screenshot it or keep tweaking anytime.',
       'success',
       { duration: 9000 },
     );
@@ -1275,7 +1277,7 @@ function openOfficialChampionModal() {
   ];
   podiumList.innerHTML = rows
     .map(([label, team]) => {
-      const value = team || '— (not picked yet)';
+      const value = team || '(not picked yet)';
       return `<li class="podium-list__item"><span class="podium-list__place">${label}</span><span class="podium-list__team">${value}</span></li>`;
     })
     .join('');

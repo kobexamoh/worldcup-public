@@ -1114,6 +1114,24 @@ header p {
   background: var(--light-gray);
 }
 
+.bracket-round__lock-tag {
+  flex: 0 0 auto;
+  margin-left: 0.35em;
+  font-size: 0.9em;
+  font-weight: 600;
+  text-transform: none;
+  letter-spacing: 0.02em;
+  color: #9ca3af;
+}
+
+.bracket-round__lock-tag::before {
+  content: '(';
+}
+
+.bracket-round__lock-tag::after {
+  content: ')';
+}
+
 /* Final label: emphatic type, still not a chip/button — no underline rule. */
 .bracket-round--final .bracket-round__title {
   font-size: var(--fs-xl);
@@ -1255,6 +1273,17 @@ header p {
   cursor: default;
 }
 
+/* Scores on locked matches: keep the row faded, but let the number stay readable. */
+.bracket-team.is-locked.has-score.loser {
+  opacity: 1;
+}
+
+.bracket-team.is-locked.has-score.loser .bracket-team__flag,
+.bracket-team.is-locked.has-score.loser .bracket-team__name,
+.bracket-team.is-locked.has-score.loser .bracket-team__medal {
+  opacity: 0.45;
+}
+
 .bracket-match.is-locked {
   position: relative;
 }
@@ -1283,6 +1312,28 @@ header p {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+.bracket-team__score {
+  flex: 0 0 auto;
+  margin-left: auto;
+  min-width: 1.15em;
+  text-align: right;
+  font-family: var(--font-body);
+  font-size: var(--fs-sm);
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.02em;
+  color: #4b5563;
+}
+
+.bracket-team.is-locked.has-score.loser .bracket-team__score {
+  opacity: 0.72;
+  color: #374151;
+}
+
+.bracket-team.is-locked.has-score.winner .bracket-team__score {
+  color: #1f2937;
 }
 
 .bracket-team__seed {

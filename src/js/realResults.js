@@ -91,3 +91,11 @@ export const REAL_MATCH_WINNERS = {
   // ── Final (Jul 19) ────────────────────────────────────────────────
   // 'M104': 'team',
 };
+
+/**
+ * Final scores for locked matches (team name → goals).
+ * Shown on the live Official bracket only; share-card PNG omits scores for now.
+ */
+export const REAL_MATCH_SCORES = {
+  M103: { France: 4, England: 6 },
+};

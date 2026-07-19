@@ -103,7 +103,7 @@ function appendFlaggedTeam(doc, parent, teamName, className = 'podium-export__te
 
   const name = doc.createElement('span');
   name.className = 'podium-export__name';
-  name.textContent = teamName || '—';
+  name.textContent = teamName || '-';
   row.appendChild(name);
   parent.appendChild(row);
 }

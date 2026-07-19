@@ -58,12 +58,12 @@ test('getStageNavState locks third and knockout until prerequisites met (when no
   assert.equal(knockoutReady.knockout.active, true);
 });
 
-test('officialBracket / Final Round stage is always enabled', () => {
+test('officialBracket / Final Match stage is always enabled', () => {
   const empty = getStageNavState({}, [], 'groups');
   assert.equal(empty.officialBracket.disabled, false);
 
   const active = getStageNavState({}, [], 'officialBracket');
   assert.equal(active.officialBracket.active, true);
   assert.equal(active.officialBracket.disabled, false);
-  assert.equal(STAGE_HEADER_LABELS.officialBracket, 'The Final Round');
+  assert.equal(STAGE_HEADER_LABELS.officialBracket, 'The Final Match');
 });

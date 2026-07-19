@@ -11,18 +11,18 @@ export const STAGE_HEADER_LABELS = {
   groups: 'Group Stage',
   third: 'Third Place',
   knockout: 'Knockout',
-  officialBracket: 'The Final Round',
+  officialBracket: 'The Final Match',
 };
 
 export const STAGE_HEADER_TAGLINES = {
   groups:
-    'Rank all twelve groups, then play through third place and the knockout — screenshot when you are happy with your bracket.',
+    'Rank all twelve groups, then play through third place and the knockout. Screenshot when you are happy with your bracket.',
   third:
     'Pick the eight third-place teams you think advance to the Round of 32.',
   knockout:
     'Click through the knockout tree to your champion, then screenshot your bracket.',
   officialBracket:
-    'Spain vs Argentina in the Final. Pick the champion and the third-place match, then screenshot your picks.',
+    'Spain vs Argentina in the Final. Pick your winner, plain and simple, then screenshot your pick.',
 };
 
 /** OG-strict: every group must have all four ranks before Third Place unlocks. */
