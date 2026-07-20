@@ -198,13 +198,15 @@ function renderCenterColumn(bracket, winners, lockedSet, flagExt = 'svg', scores
   const thirdMatch = bracket.thirdPlace?.[0] || null;
   const bothSfPicked = winners.M101 && winners.M102;
   const thirdLocked = lockedSet.has('M103');
+  const finalLocked = lockedSet.has('M104');
   const thirdLockTag = thirdLocked ? 'Already decided' : '';
+  const finalLockTag = finalLocked ? 'Already decided' : '';
 
   return `
     <div class="bracket-center">
       <div class="bracket-center__final-row">
         ${renderSingleMatchColumn('Semi-final', m101, winners, { role: 'sf', lockedSet, flagExt, scoresByMatch })}
-        ${renderSingleMatchColumn('Final', finalMatch, winners, { role: 'final', lockedSet, flagExt, scoresByMatch })}
+        ${renderSingleMatchColumn('Final', finalMatch, winners, { role: 'final', lockedSet, flagExt, scoresByMatch, lockTag: finalLockTag })}
         ${renderSingleMatchColumn('Semi-final', m102, winners, { role: 'sf', lockedSet, flagExt, scoresByMatch })}
       </div>
       <div class="bracket-center__third${bothSfPicked || thirdLocked ? '' : ' bracket-center__third--locked'}">
