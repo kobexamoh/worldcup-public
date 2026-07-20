@@ -1,8 +1,8 @@
-# 2026 World Cup: The Final Match
+# 2026 World Cup: Spain are champions
 
-Public, no-login bracket for the World Cup Final at [worldcup.kobexamoh.me](https://worldcup.kobexamoh.me).
+Public, no-login bracket for the 2026 World Cup Final at [worldcup.kobexamoh.me](https://worldcup.kobexamoh.me).
 
-Pick Spain vs Argentina in the Final. Third place is already decided. Picks save in your browser; screenshot to share.
+Spain beat Argentina 1-0 in extra time. The Final and third place are locked to the real results. Add your name and screenshot the podium.
 
 ## Stack
 

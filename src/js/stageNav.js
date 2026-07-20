@@ -22,7 +22,7 @@ export const STAGE_HEADER_TAGLINES = {
   knockout:
     'Click through the knockout tree to your champion, then screenshot your bracket.',
   officialBracket:
-    'Spain vs Argentina in the Final. Pick your winner, plain and simple, then screenshot your pick.',
+    'Spain are world champions. They beat Argentina 1-0 in extra time. Add your name and screenshot the final podium.',
 };
 
 /** OG-strict: every group must have all four ranks before Third Place unlocks. */

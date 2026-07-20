@@ -89,7 +89,7 @@ export const REAL_MATCH_WINNERS = {
   'M103': 'England',       // 6-4 vs France (Jul 18)
 
   // ── Final (Jul 19) ────────────────────────────────────────────────
-  // 'M104': 'team',
+  'M104': 'Spain',         // 1-0 vs Argentina AET (Jul 19)
 };
 
 /**
@@ -98,4 +98,5 @@ export const REAL_MATCH_WINNERS = {
  */
 export const REAL_MATCH_SCORES = {
   M103: { France: 4, England: 6 },
+  M104: { Spain: 1, Argentina: 0 },
 };

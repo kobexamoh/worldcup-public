@@ -253,6 +253,29 @@ test('locked third-place match shows Already decided tag and live scores', () =>
   assert.match(html, /bracket-team[^>]*has-score/);
 });
 
+test('locked final shows Already decided tag, scores, and Spain as champion', () => {
+  const { bracket, mergedWinners, lockedSet } = buildRealResultsBracket();
+  const html = renderKnockoutTree(bracket, mergedWinners, {
+    startRound: 'sf',
+    lockedMatches: lockedSet,
+    matchScores: REAL_MATCH_SCORES,
+  });
+
+  const finalChunk = html.slice(
+    html.indexOf('bracket-round--final'),
+    html.indexOf('bracket-center__third'),
+  );
+  assert.match(finalChunk, /bracket-round__lock-tag">Already decided</);
+  assert.match(finalChunk, /Spain/);
+  assert.match(finalChunk, /Argentina/);
+  assert.match(finalChunk, /bracket-team__score[^>]*>1</);
+  assert.match(finalChunk, /bracket-team__score[^>]*>0</);
+  assert.match(finalChunk, /bracket-team__medal--gold/);
+  assert.match(finalChunk, /bracket-team__medal--silver/);
+  assert.ok(lockedSet.has('M104'));
+  assert.equal(mergedWinners.M104, 'A'); // Spain on side A of the Final
+});
+
 test('right half columns run QF inward to R32 on the outer edge', () => {
   const picks = makePicksWithKnownThirds();
   const qualifying = ['E', 'F', 'G', 'H', 'I', 'J', 'K', 'L'];
